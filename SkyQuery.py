@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime as dt
 
-API_KEY = "1f9f3aa0c8d64b5bef678e7cfbc99780"
+API_KEY = ""
 UNITS = 'standard'
 LANG = "eng"
 MISSING = "N/A"
