@@ -1,7 +1,10 @@
 import requests
 from datetime import datetime as dt
+from dotenv import load_dotenv
+import os
 
-API_KEY = ""
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 UNITS = 'standard'
 LANG = "eng"
 MISSING = "N/A"
@@ -74,7 +77,7 @@ class SkyQuery:
     def show_data(self):
         try:
             # --- Header Section ---
-            print(f"\n--- CURRENT WEATHER: {self.result.get('name', 'Location')} ---")
+            print(f"\n--- 🛰️SKYQUERY TERMINAL:: {self.result.get('name', 'Location')} ---")
             print(f"Timezone: {self.timezone} | Condition: {self.weather} ({self.weather_description.title()})")
 
             # --- Temperature & Feel ---
