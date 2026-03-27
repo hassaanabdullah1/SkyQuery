@@ -1,82 +1,53 @@
-#SkyQuery
+# 🛰️ SkyQuery Terminal
 
-**SkyQuery** is a high-performance, object-oriented Command Line Interface (CLI) designed to pull real-time meteorological data directly into your terminal. By bridging the gap between raw API data and a clean user dashboard, SkyQuery provides an efficient way to monitor global weather conditions without the bloat of a web browser.
+**SkyQuery** is a robust Python command-line interface (CLI) that provides detailed weather analytics using the **OpenWeatherMap API**. By utilizing geocoding, it ensures precision by allowing users to select the exact city, state, and country they wish to query.
 
-## 🌟 Key Features
+## 🚀 Key Features
+* **Smart Geocoding:** Search for a city name and choose from multiple global matches to get the exact location.
+* **Comprehensive Metrics:** Tracks temperature, "feels like" values, humidity, visibility, and cloud coverage.
+* **Wind Analytics:** Displays speed, direction, and gust data.
+* **Solar Tracking:** Converts raw UTC timestamps into readable local sunrise and sunset times.
+* **OOP Architecture:** Built with modular classes (`Validate`, `WeatherData`, `SkyQuery`) for clean, maintainable code.
 
-* **Geographical Precision:** Integrated Geocoding API allows you to search by city name and select from a list of global matches to ensure coordinate accuracy.
-* **Atmospheric Intelligence:** Detailed reporting on temperature (Actual vs. Feels Like), humidity levels, and cloud coverage.
-* **Wind Dynamics:** Real-time tracking of wind speeds, degrees, and gusts.
-* **Solar Tracking:** Automated UTC-to-Local conversion for precise Sunrise and Sunset timings.
-* **Fault-Tolerant Design:** Built-in logic to handle network timeouts, invalid inputs, and API communication errors.
+## 🛠️ Installation & Setup
 
----
-
-## 🛠️ The Engine Under the Hood
-
-SkyQuery is built with a modular architecture to ensure code maintainability:
-
-* **Python 3.x**: The core logic and data processing.
-* **Requests Library**: Handles all asynchronous communication with the OpenWeatherMap infrastructure.
-* **OOP Architecture**: Uses dedicated classes for Validation, Data Fetching, and UI Rendering.
-
----
-
-## 🚀 Installation & Getting Started
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/hassaanabdullah1/SkyQuery.git
-cd SkyQuery
-```
-
-### 2. Install Dependencies
-```bash
-pip install requests
-```
-
-### 3. Configure API Access
-1.  Obtain a free API Key from [OpenWeatherMap](https://openweathermap.org/api).
-2.  Open `WeatherApp.py` and input your key into the `API_KEY` variable:
-    ```python
-    API_KEY = "your_secret_key_here"
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/hassaanabdullah1/SkyQuery.git
+    cd SkyQuery
     ```
 
-### 4. Launch SkyQuery
+2.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Configure API Key:**
+    * Obtain a free API key from [OpenWeatherMap](https://openweathermap.org/api).
+    * Create a file named `.env` in the root directory.
+    * Add your key to the file:
+        ```env
+        API_KEY=your_actual_api_key_here
+        ```
+
+## 💻 Usage
+
+Launch the application via your terminal:
 ```bash
 python main.py
 ```
 
----
+1.  **Search:** Enter the city name (e.g., "London" or "Tokyo").
+2.  **Select:** Choose the correct location from the numbered list of results.
+3.  **View:** Analyze the formatted weather report.
 
-## 📊 Data Points Delivered
-| Category | Data Points |
-| :--- | :--- |
-| **Temperature** | Current Temp, Feels Like, Cloud % |
-| **Atmosphere** | Humidity, Visibility (meters) |
-| **Wind** | Speed (m/s), Direction (degrees), Gusts |
-| **Solar** | Sunrise Time, Sunset Time |
+## 🧮 Technical Details: Conversions
 
----
+The application performs real-time data processing for human readability:
+* **Temperature:** Converted from Kelvin ($K$) to Celsius ($°C$):
+    $$T_{(°C)} = T_{(K)} - 273.15$$
+* **Timezones:** Raw offsets are converted into standard UTC format (e.g., `UTC+5`).
 
-## 🗺️ Roadmap
-* [ ] **Unit Conversion:** Toggle between Metric, Imperial, and Scientific (Kelvin) units.
-* [ ] **Secure Storage:** Implementation of `.env` support for API keys.
-* [ ] **Forecast Engine:** Expansion to 5-day / 3-hour forecast intervals.
-* [ ] **Export Mode:** Option to save weather reports to a `.txt` or `.json` file.
+## 🛡️ Security
 
----
-
-## ⚖️ License
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-### 💡 Final Step for You
-To make the app truly feel like **SkyQuery**, update your `show_data` method one last time:
-
-```python
-print(f"\n--- 🛰️  SKYQUERY TERMINAL: {self.result.get('name', 'Location')} ---")
-```
-
-**Would you like me to draft a `.gitignore` file for you now so your private API key doesn't accidentally get pushed to GitHub?**
+Your API key is protected via `python-dotenv`. Ensure that the `.env` file is listed in your `.gitignore` to prevent it from being shared publicly.
